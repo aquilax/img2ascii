@@ -5,7 +5,8 @@ import (
 	"image/color"
 )
 
-const palette = "MND8OZ$7I?+=~:,.."
+// Pallette from http://paulbourke.net/dataformats/asciiart/
+const palette = "@%#*+=-:. "
 
 var palletteCount = uint(len(palette))
 
