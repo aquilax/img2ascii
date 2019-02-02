@@ -23,7 +23,7 @@ func TestAsciiNoColor_GetCharForColor(t *testing.T) {
 			args{
 				colornames.Black,
 			},
-			"M",
+			"@",
 		},
 		{
 			"White color returns space",
@@ -31,7 +31,7 @@ func TestAsciiNoColor_GetCharForColor(t *testing.T) {
 			args{
 				colornames.Green,
 			},
-			"O",
+			"#",
 		},
 	}
 	for _, tt := range tests {

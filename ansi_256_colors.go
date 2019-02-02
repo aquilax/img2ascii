@@ -29,7 +29,7 @@ func (ac ANSI256Colors) GetImage(img image.Image) (image.Image, error) {
 	return img, nil
 }
 
-func (ac ANSI256Colors) GetCharForColor(c color.Color) string {
+func (ac *ANSI256Colors) GetCharForColor(c color.Color) string {
 	color := getANSIColor(c)
 	if ac.lastColor == color {
 		// Keep the existing color
@@ -39,10 +39,11 @@ func (ac ANSI256Colors) GetCharForColor(c color.Color) string {
 	return "\x1b[48;5;" + strconv.Itoa(ac.lastColor) + "m" + solidChar
 }
 
-func (ac ANSI256Colors) GetEndLine() string {
+func (ac *ANSI256Colors) GetEndLine() string {
+	ac.lastColor = -1
 	return "\x1b[0m\n"
 }
 
 func (ac ANSI256Colors) GetEndOfImage() string {
-	return "\x1b[0m"
+	return ""
 }

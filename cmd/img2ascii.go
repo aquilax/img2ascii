@@ -40,9 +40,9 @@ func main() {
 
 	var c img2ascii.Converter
 	if *convertor == "ascii" {
-		c = img2ascii.AsciiNoColor{}
+		c = &img2ascii.AsciiNoColor{}
 	} else {
-		c = img2ascii.ANSI256Colors{}
+		c = &img2ascii.ANSI256Colors{}
 	}
 	img2ascii.Process(newImage, os.Stdout, c)
 }

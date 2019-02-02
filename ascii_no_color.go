@@ -28,5 +28,5 @@ func (anc AsciiNoColor) GetEndLine() string {
 }
 
 func (anc AsciiNoColor) GetEndOfImage() string {
-	return "\n"
+	return ""
 }
