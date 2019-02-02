@@ -34,7 +34,8 @@ func main() {
 
 	newImage := resize.Resize(width, height, img, resize.Lanczos3)
 
-	c := img2ascii.AsciiNoColor{}
+	// c := img2ascii.AsciiNoColor{}
+	c := img2ascii.ANSI256Colors{}
 	img2ascii.Process(newImage, os.Stdout, c)
 
 }

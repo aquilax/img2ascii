@@ -10,6 +10,8 @@ import (
 type Converter interface {
 	GetImage(img image.Image) (image.Image, error)
 	GetCharForColor(c color.Color) string
+	GetEndLine() string
+	GetEndOfImage() string
 }
 
 func Process(img image.Image, out io.WriteCloser, c Converter) error {
@@ -26,7 +28,8 @@ func Process(img image.Image, out io.WriteCloser, c Converter) error {
 		for x := 0; x < width; x++ {
 			io.WriteString(out, c.GetCharForColor(image.At(x, y)))
 		}
-		io.WriteString(out, "\n")
+		io.WriteString(out, c.GetEndLine())
 	}
+	io.WriteString(out, c.GetEndOfImage())
 	return nil
 }

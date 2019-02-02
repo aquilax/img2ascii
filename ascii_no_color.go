@@ -22,3 +22,11 @@ func (anc AsciiNoColor) GetCharForColor(c color.Color) string {
 	pos := int(y * (palletteCount - 1) / 255)
 	return string(palette[pos])
 }
+
+func (anc AsciiNoColor) GetEndLine() string {
+	return "\n"
+}
+
+func (anc AsciiNoColor) GetEndOfImage() string {
+	return "\n"
+}
