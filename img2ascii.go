@@ -39,6 +39,8 @@ func main() {
 		c = &img2ascii.TrueColors{}
 	} else if *convertor == "24bit2x" {
 		c = &img2ascii.TrueColorsDoubleHeight{}
+	} else if *convertor == "ansi2562x" {
+		c = &img2ascii.ANSI256ColorsDoubleHeight{}
 	} else {
 		c = &img2ascii.ANSI256Colors{}
 	}
