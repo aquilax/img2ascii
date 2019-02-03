@@ -10,3 +10,6 @@ Image to ascii (and not only conversion tool)
 
 ## 24bit color
 ![lenna-24bit](images/lena3.png)
+
+## 24bit color double height resolution
+![lenna-24bit](images/lena4.png)
