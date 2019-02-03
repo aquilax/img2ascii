@@ -41,6 +41,8 @@ func main() {
 	var c img2ascii.Converter
 	if *convertor == "ascii" {
 		c = &img2ascii.AsciiNoColor{}
+	} else if *convertor == "24bit" {
+		c = &img2ascii.TrueColors{}
 	} else {
 		c = &img2ascii.ANSI256Colors{}
 	}

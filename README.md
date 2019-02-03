@@ -2,6 +2,11 @@
 
 Image to ascii (and not only conversion tool)
 
-![lena-ascii](images/lena1.png)
+## ASCII
+![lenna-ascii](images/lena1.png)
 
-![lena-ansi](images/lena2.png)
+## 256 colors ()
+![lenna-ansi](images/lena2.png)
+
+## 24bit color
+![lenna-24bit](images/lena3.png)
