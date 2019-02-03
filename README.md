@@ -1,6 +1,8 @@
 # img2ascii
 
-Image to ascii (and not only conversion tool)
+[![Go Report Card](https://goreportcard.com/badge/github.com/aquilax/img2ascii)](https://goreportcard.com/report/github.com/aquilax/img2ascii)
+
+Image to ascii (and not only) conversion tool and library
 
 ## ASCII
 ![lenna-ascii](images/lena1.png)
