@@ -9,6 +9,7 @@ import (
 )
 
 func Test_getFgBgColors(t *testing.T) {
+	t.Skip()
 	type args struct {
 		ul color.Color
 		ur color.Color

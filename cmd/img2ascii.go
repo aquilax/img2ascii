@@ -8,7 +8,7 @@ import (
 	_ "image/png"
 	"os"
 
-	"github.com/aquilax/img2ascii/lib"
+	"github.com/aquilax/img2ascii"
 	"github.com/nfnt/resize"
 )
 
