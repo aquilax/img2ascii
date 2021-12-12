@@ -7,14 +7,17 @@ import (
 	"io"
 )
 
-type TrueColorsDoubleHeight struct {
+type TrueColorsDoubleHeight struct{}
+
+func NewTrueColorsDoubleHeight() *TrueColorsDoubleHeight {
+	return &TrueColorsDoubleHeight{}
 }
 
 func (c TrueColorsDoubleHeight) GetFontRatio() float64 {
 	return halfHeightRatio
 }
 
-func (c *TrueColorsDoubleHeight) Process(img image.Image, out io.WriteCloser) error {
+func (c *TrueColorsDoubleHeight) Encode(out io.Writer, img image.Image) error {
 	bounds := img.Bounds()
 	height := bounds.Dy()
 	width := bounds.Dx()

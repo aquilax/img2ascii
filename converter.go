@@ -5,8 +5,8 @@ import (
 	"io"
 )
 
-// Converter is color to string interface
+// Converter is the interface implemented by all converters
 type Converter interface {
-	Process(img image.Image, out io.WriteCloser) error
+	Encode(w io.Writer, m image.Image) error
 	GetFontRatio() float64
 }

@@ -8,17 +8,27 @@ import (
 )
 
 // Pallette from http://paulbourke.net/dataformats/asciiart/
-const palette = "@%#*+=-:. "
+const DefaultAsciiPalette = "@%#*+=-:. "
 
-var palletteCount = uint(len(palette))
+type AsciiNoColor struct {
+	palette     string
+	paletteSize int
+}
 
-type AsciiNoColor struct{}
+// NewAsciiNoColor creates new AsciiNoColor converter
+func NewAsciiNoColor(palette string) *AsciiNoColor {
+	return &AsciiNoColor{
+		palette,
+		len(palette),
+	}
+}
 
-func (c AsciiNoColor) GetFontRatio() float64 {
+func (anc AsciiNoColor) GetFontRatio() float64 {
 	return doubleHeightRatio
 }
 
-func (c AsciiNoColor) Process(img image.Image, out io.WriteCloser) error {
+// Encode converts image to AsciiNoColor and writes it to out
+func (anc AsciiNoColor) Encode(out io.Writer, img image.Image) error {
 	bounds := img.Bounds()
 	height := bounds.Dy()
 	width := bounds.Dx()
@@ -26,7 +36,7 @@ func (c AsciiNoColor) Process(img image.Image, out io.WriteCloser) error {
 	var buffer bytes.Buffer
 	for y := 0; y < height; y++ {
 		for x := 0; x < width; x++ {
-			buffer.WriteString(c.GetCharForColor(img.At(x, y)))
+			buffer.WriteString(anc.GetCharForColor(img.At(x, y)))
 		}
 		buffer.WriteString("\n")
 		io.WriteString(out, buffer.String())
@@ -35,9 +45,10 @@ func (c AsciiNoColor) Process(img image.Image, out io.WriteCloser) error {
 	return nil
 }
 
+// GetCharForColor returns AsciiNoColor string representation of color
 func (anc AsciiNoColor) GetCharForColor(c color.Color) string {
 	gray := color.GrayModel.Convert(c)
-	y := uint(gray.(color.Gray).Y)
-	pos := int(y * (palletteCount - 1) / 255)
-	return string(palette[pos])
+	y := int(gray.(color.Gray).Y)
+	pos := int(y * (anc.paletteSize - 1) / 255)
+	return string(anc.palette[pos])
 }

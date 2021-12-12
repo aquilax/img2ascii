@@ -11,11 +11,15 @@ type TrueColors struct {
 	lastColor string
 }
 
+func NewTrueColors() *TrueColors {
+	return &TrueColors{}
+}
+
 func (c TrueColors) GetFontRatio() float64 {
 	return doubleHeightRatio
 }
 
-func (c *TrueColors) Process(img image.Image, out io.WriteCloser) error {
+func (c *TrueColors) Encode(out io.Writer, img image.Image) error {
 	bounds := img.Bounds()
 	height := bounds.Dy()
 	width := bounds.Dx()

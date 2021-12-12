@@ -8,14 +8,17 @@ import (
 	"strconv"
 )
 
-type ANSI256ColorsDoubleHeight struct {
+type ANSI256ColorsDoubleHeight struct{}
+
+func NewANSI256ColorsDoubleHeight() *ANSI256ColorsDoubleHeight {
+	return &ANSI256ColorsDoubleHeight{}
 }
 
 func (c ANSI256ColorsDoubleHeight) GetFontRatio() float64 {
 	return halfHeightRatio
 }
 
-func (c *ANSI256ColorsDoubleHeight) Process(img image.Image, out io.WriteCloser) error {
+func (c *ANSI256ColorsDoubleHeight) Encode(out io.Writer, img image.Image) error {
 	bounds := img.Bounds()
 	height := bounds.Dy()
 	width := bounds.Dx()

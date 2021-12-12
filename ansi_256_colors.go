@@ -12,11 +12,15 @@ type ANSI256Colors struct {
 	lastColor int
 }
 
+func NewANSI256Colors() *ANSI256Colors {
+	return &ANSI256Colors{}
+}
+
 func (c ANSI256Colors) GetFontRatio() float64 {
 	return doubleHeightRatio
 }
 
-func (c *ANSI256Colors) Process(img image.Image, out io.WriteCloser) error {
+func (c *ANSI256Colors) Encode(out io.Writer, img image.Image) error {
 	bounds := img.Bounds()
 	height := bounds.Dy()
 	width := bounds.Dx()

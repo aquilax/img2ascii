@@ -35,21 +35,21 @@ func main() {
 
 	var c img2ascii.Converter
 	if *convertor == "ascii" {
-		c = &img2ascii.AsciiNoColor{}
+		c = img2ascii.NewAsciiNoColor(img2ascii.DefaultAsciiPalette)
 	} else if *convertor == "24bit" {
-		c = &img2ascii.TrueColors{}
+		c = img2ascii.NewTrueColors()
 	} else if *convertor == "24bit2x" {
-		c = &img2ascii.TrueColorsDoubleHeight{}
+		c = img2ascii.NewTrueColorsDoubleHeight()
 	} else if *convertor == "ansi2562x" {
-		c = &img2ascii.ANSI256ColorsDoubleHeight{}
+		c = img2ascii.NewANSI256ColorsDoubleHeight()
 	} else {
-		c = &img2ascii.ANSI256Colors{}
+		c = img2ascii.NewANSI256Colors()
 	}
 	height := uint(float64(bounds.Max.Y) * c.GetFontRatio() * float64(width) / float64(bounds.Max.X))
 
 	newImage := resize.Resize(width, height, img, resize.Lanczos3)
 
-	if err := c.Process(newImage, os.Stdout); err != nil {
+	if err := c.Encode(os.Stdout, newImage); err != nil {
 		panic(err)
 	}
 }
