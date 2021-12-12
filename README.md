@@ -62,25 +62,24 @@ func ExampleImage_Encode() {
 }
 ```
 
-
 ## Screenshots
 
 ### ASCII
 
-![lenna-ascii](images/lena1.png)
+![ascii](images/ascii.png)
 
 ### ANSI 256 colors Single Height
 
-![lenna-ansi](images/lena2.png)
+![ansi](images/ansi.png)
 
 ### ANSI 256 colors Half Height
 
-![lenna-ansi](images/lena5.png)
+![ansi half](images/ansiHalf.png)
 
 ### ANSI 24bit color Single Height
 
-![lenna-24bit](images/lena3.png)
+![24bit](images/24bit.png)
 
 ### ANSI 24bit color Half Height
 
-![lenna-24bit](images/lena4.png)
+![24bit Half](images/24bitHalf.png)

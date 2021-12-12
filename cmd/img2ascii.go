@@ -16,6 +16,7 @@ import (
 
 var maxWidth = flag.Int("width", 120, "Maximum width")
 var convertor = flag.String("converter", "ansi256", "Converter")
+var output = flag.String("output", "", "Output file name (Defaults to stdout)")
 
 func main() {
 	flag.Parse()
@@ -50,8 +51,15 @@ func main() {
 	height := uint(float64(bounds.Max.Y) * e.GetFontRatio() * float64(width) / float64(bounds.Max.X))
 
 	newImage := resize.Resize(width, height, img, resize.Lanczos3)
-
-	if err := e.Encode(os.Stdout, newImage); err != nil {
+	ow := os.Stdout
+	if *output != "" {
+		ow, err = os.Create(*output)
+		if err != nil {
+			panic(err)
+		}
+		defer ow.Close()
+	}
+	if err := e.Encode(ow, newImage); err != nil {
 		panic(err)
 	}
 }
