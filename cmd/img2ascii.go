@@ -9,6 +9,8 @@ import (
 	"os"
 
 	"github.com/aquilax/img2ascii"
+	"github.com/aquilax/img2ascii/ansi"
+	"github.com/aquilax/img2ascii/ascii"
 	"github.com/nfnt/resize"
 )
 
@@ -33,23 +35,23 @@ func main() {
 		width = uint(bounds.Max.X)
 	}
 
-	var c img2ascii.Converter
+	var e img2ascii.Encoder
 	if *convertor == "ascii" {
-		c = img2ascii.NewAsciiNoColor(img2ascii.DefaultAsciiPalette)
+		e = ascii.NewImage()
 	} else if *convertor == "24bit" {
-		c = img2ascii.NewTrueColors()
+		e = ansi.NewImage(ansi.PaletteTrueColor, ansi.SingleHeight)
 	} else if *convertor == "24bit2x" {
-		c = img2ascii.NewTrueColorsDoubleHeight()
+		e = ansi.NewImage(ansi.PaletteTrueColor, ansi.HalfHeight)
 	} else if *convertor == "ansi2562x" {
-		c = img2ascii.NewANSI256ColorsDoubleHeight()
+		e = ansi.NewImage(ansi.Palette256, ansi.HalfHeight)
 	} else {
-		c = img2ascii.NewANSI256Colors()
+		e = ansi.NewImage(ansi.Palette256, ansi.SingleHeight)
 	}
-	height := uint(float64(bounds.Max.Y) * c.GetFontRatio() * float64(width) / float64(bounds.Max.X))
+	height := uint(float64(bounds.Max.Y) * e.GetFontRatio() * float64(width) / float64(bounds.Max.X))
 
 	newImage := resize.Resize(width, height, img, resize.Lanczos3)
 
-	if err := c.Encode(os.Stdout, newImage); err != nil {
+	if err := e.Encode(os.Stdout, newImage); err != nil {
 		panic(err)
 	}
 }

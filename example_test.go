@@ -8,7 +8,8 @@ import (
 
 	_ "image/png"
 
-	"github.com/aquilax/img2ascii"
+	"github.com/aquilax/img2ascii/ansi"
+	"github.com/aquilax/img2ascii/ascii"
 )
 
 func getExampleImage() image.Image {
@@ -17,8 +18,8 @@ func getExampleImage() image.Image {
 	return i
 }
 
-func ExampleAsciiNoColor_Encode() {
-	c := img2ascii.NewAsciiNoColor(img2ascii.DefaultAsciiPalette)
+func ExampleAsciiImage_Encode() {
+	c := ascii.NewImage()
 	i := getExampleImage()
 	c.Encode(os.Stdout, i)
 	// Output:
@@ -73,7 +74,7 @@ func ExampleAsciiNoColor_Encode() {
 }
 
 func ExampleTrueColor_Encode() {
-	c := img2ascii.NewTrueColors()
+	c := ansi.NewImage(ansi.PaletteTrueColor, ansi.SingleHeight)
 	i := getExampleImage()
 	c.Encode(os.Stdout, i)
 	// Output:
@@ -128,7 +129,7 @@ func ExampleTrueColor_Encode() {
 }
 
 func ExampleANSI256Colors_Encode() {
-	c := img2ascii.NewANSI256Colors()
+	c := ansi.NewImage(ansi.Palette256, ansi.SingleHeight)
 	i := getExampleImage()
 	c.Encode(os.Stdout, i)
 	// Output:
@@ -183,7 +184,7 @@ func ExampleANSI256Colors_Encode() {
 }
 
 func ExampleANSI256ColorsDoubleHeight_Encode() {
-	c := img2ascii.NewANSI256ColorsDoubleHeight()
+	c := ansi.NewImage(ansi.Palette256, ansi.HalfHeight)
 	i := getExampleImage()
 	c.Encode(os.Stdout, i)
 	// Output:
@@ -213,8 +214,8 @@ func ExampleANSI256ColorsDoubleHeight_Encode() {
 	// [38;5;202m[48;5;202m▀[38;5;208m[48;5;202m▀[38;5;208m[48;5;208m▀[38;5;208m[48;5;208m▀[38;5;214m[48;5;208m▀[38;5;214m[48;5;208m▀[38;5;214m[48;5;214m▀[38;5;214m[48;5;214m▀[38;5;220m[48;5;214m▀[38;5;220m[48;5;220m▀[38;5;220m[48;5;220m▀[38;5;226m[48;5;220m▀[38;5;226m[48;5;226m▀[38;5;226m[48;5;226m▀[38;5;190m[48;5;226m▀[38;5;190m[48;5;190m▀[38;5;190m[48;5;190m▀[38;5;190m[48;5;190m▀[38;5;154m[48;5;190m▀[38;5;154m[48;5;154m▀[38;5;154m[48;5;154m▀[38;5;118m[48;5;154m▀[38;5;118m[48;5;118m▀[38;5;118m[48;5;118m▀[38;5;82m[48;5;118m▀[38;5;82m[48;5;82m▀[38;5;82m[48;5;82m▀[38;5;46m[48;5;82m▀[38;5;46m[48;5;46m▀[38;5;46m[48;5;46m▀[38;5;46m[48;5;46m▀[38;5;47m[48;5;46m▀[38;5;47m[48;5;47m▀[38;5;47m[48;5;47m▀[38;5;48m[48;5;47m▀[38;5;48m[48;5;48m▀[38;5;48m[48;5;48m▀[38;5;49m[48;5;48m▀[38;5;49m[48;5;49m▀[38;5;49m[48;5;49m▀[38;5;50m[48;5;49m▀[38;5;50m[48;5;49m▀[38;5;50m[48;5;50m▀[38;5;50m[48;5;50m▀[38;5;51m[48;5;50m▀[38;5;51m[48;5;51m▀[38;5;51m[48;5;51m▀[38;5;45m[48;5;51m▀[0m
 }
 
-func ExampleTrueColorsDoubleHeight_Encode() {
-	c := img2ascii.NewTrueColorsDoubleHeight()
+func ExampleTrueColorDoubleHeight_Encode() {
+	c := ansi.NewImage(ansi.PaletteTrueColor, ansi.HalfHeight)
 	i := getExampleImage()
 	c.Encode(os.Stdout, i)
 	// Output:

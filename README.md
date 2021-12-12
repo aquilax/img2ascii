@@ -1,6 +1,6 @@
 # img2ascii
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/aquilax/img2ascii)](https://goreportcard.com/report/github.com/aquilax/img2ascii)
+[![Go Reference](https://pkg.go.dev/badge/github.com/aquilax/img2ascii.svg)](https://pkg.go.dev/github.com/aquilax/img2ascii) | [![Go Report Card](https://goreportcard.com/badge/github.com/aquilax/img2ascii)](https://goreportcard.com/report/github.com/aquilax/img2ascii)
 
 Image to ascii (and not only) conversion tool and library
 

@@ -1,4 +1,4 @@
-package img2ascii
+package ansi
 
 import (
 	"image/color"

@@ -1,4 +1,4 @@
-package img2ascii
+package ascii
 
 import (
 	"image/color"
@@ -7,19 +7,19 @@ import (
 	"golang.org/x/image/colornames"
 )
 
-func TestAsciiNoColor_GetCharForColor(t *testing.T) {
+func TestImage_GetCharForColor(t *testing.T) {
 	type args struct {
 		c color.Color
 	}
 	tests := []struct {
 		name string
-		anc  *AsciiNoColor
+		i    *Image
 		args args
 		want string
 	}{
 		{
 			"Black color returns M",
-			NewAsciiNoColor(DefaultAsciiPalette),
+			NewImage(),
 			args{
 				colornames.Black,
 			},
@@ -27,7 +27,7 @@ func TestAsciiNoColor_GetCharForColor(t *testing.T) {
 		},
 		{
 			"White color returns space",
-			NewAsciiNoColor(DefaultAsciiPalette),
+			NewImage(),
 			args{
 				colornames.Green,
 			},
@@ -36,9 +36,8 @@ func TestAsciiNoColor_GetCharForColor(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			anc := tt.anc
-			if got := anc.GetCharForColor(tt.args.c); got != tt.want {
-				t.Errorf("AsciiNoColor.GetCharForColor() = %v, want %v", got, tt.want)
+			if got := tt.i.getCharForColor(tt.args.c); got != tt.want {
+				t.Errorf("Image.getCharForColor() = %v, want %v", got, tt.want)
 			}
 		})
 	}
