@@ -12,4 +12,4 @@
 *.out
 
 # Binary
-img2ascii
+cmd/img2ascii/img2ascii
